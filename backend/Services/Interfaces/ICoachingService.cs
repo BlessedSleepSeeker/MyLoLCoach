@@ -3,5 +3,5 @@ using MyLolCoach.Models;
 
 public interface ICoachingService
 {
-	ActionResult<CoachingResult> GetCoachingAsync();
+	Task<ActionResult<CoachingResult>> GetCoachingAsync(string account_name, string account_tag);
 }
