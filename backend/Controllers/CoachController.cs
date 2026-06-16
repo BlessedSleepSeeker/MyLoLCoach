@@ -31,7 +31,7 @@ namespace MyLolCoach.Controllers
     	{
     	    CoachingResult result = new()
 			{
-				Puid = "test_puid",
+				Puuid = "test_puid",
 				YourChampion = "Test",
 				Opponents = ["Testo", "Testu"]
 			};
