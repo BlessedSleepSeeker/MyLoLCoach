@@ -14,19 +14,10 @@ public class CoachingService : ICoachingService
 	{
 		CoachingResult result = new()
 		{
-			Puuid = "test_puid",
-			AccountName = account_name,
-			AccountTag = account_tag,
-			YourChampion = "Void",
-			Opponents = ["Testo", "Testu"]
+			RiotAccount = await _riot_service.GetCurrentAccount(account_name, account_tag),
 		};
-		RiotAccount account = await _riot_service.GetCurrentAccount(account_name, account_tag);
 
-		result.Puuid = account.Puuid;
-		result.AccountName = account.GameName;
-		result.AccountTag = account.TagLine;
-
-		result.CurrentGame = await _riot_service.GetCurrentGame(result.Puuid);
+		result.CurrentGame = await _riot_service.GetCurrentGame(result.RiotAccount?.Puuid);
 
 		return result;
 	}
