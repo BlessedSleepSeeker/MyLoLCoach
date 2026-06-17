@@ -96,6 +96,7 @@ public class Champion
 	public long Key { get; set; }
 	public List<String> AllyTips { get; set; } = [];
 	public List<String> EnemyTips { get; set; } = [];
+	public List<Spell> Spells { get; set; } = [];
 }
 
 public class Spell
@@ -105,5 +106,5 @@ public class Spell
 	public string? Name { get; set; }
 	public string? Description { get; set; }
 	public string? Tooltip { get; set; }
-	public List<int> Cooldown { get; set; } = [];
+	public List<float> Cooldown { get; set; } = [];
 }

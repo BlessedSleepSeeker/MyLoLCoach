@@ -45,7 +45,7 @@ public class RiotService : IRiotService
 
 		HttpResponseMessage http_response = await client.GetAsync(riot_api_champion_request);
 		string riot_api_response_string = await http_response.Content.ReadAsStringAsync();
-		// Cleaning up the response string to trick the JsonConvert into working
+		// Cleaning up the response string to trick the JsonConvert into working with our data structure.
 		string to_remove = $"\"data\":{{\"{champion_name}\":{{";
 		riot_api_response_string = riot_api_response_string.Remove(riot_api_response_string.IndexOf(to_remove), to_remove.Length);
 		riot_api_response_string = riot_api_response_string[..^2];
