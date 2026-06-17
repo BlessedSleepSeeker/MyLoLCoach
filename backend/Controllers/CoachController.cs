@@ -26,17 +26,10 @@ namespace MyLolCoach.Controllers
     	    return await _coaching_service.GetCoachingAsync(account_name, account_tag);
     	}
 
-		[HttpGet]
-    	public ActionResult<CoachingResult> GetCoaching2()
+		[HttpGet("{champion_name}")]
+    	public async Task<ActionResult<CoachingResult>> GetCoachingOnMatchup(string champion_name)
     	{
-    	    CoachingResult result = new()
-			{
-				Puuid = "test_puid",
-				YourChampion = "Test",
-				Opponents = ["Testo", "Testu"]
-			};
-
-			return result;
+    	    return await _coaching_service.GetMatchupAsync(champion_name);
     	}
     }
 }

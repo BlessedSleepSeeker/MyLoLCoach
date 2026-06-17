@@ -86,3 +86,24 @@ public class BannedChampion
 	// The ID of the team that banned the champion 
 	public long TeamId { get; set; }
 }
+
+public class Champion
+{
+	public string? Type { get; set; }
+	// This time, it's the champion's name
+	public string? Id { get; set; }
+	// Equivalent to ChampionId
+	public long Key { get; set; }
+	public List<String> AllyTips { get; set; } = [];
+	public List<String> EnemyTips { get; set; } = [];
+}
+
+public class Spell
+{
+	// The spell name formated as "{ChampionId}{KeyboardLetter}", E.G. "AatroxQ".
+	public string? Id { get; set; }
+	public string? Name { get; set; }
+	public string? Description { get; set; }
+	public string? Tooltip { get; set; }
+	public List<int> Cooldown { get; set; } = [];
+}

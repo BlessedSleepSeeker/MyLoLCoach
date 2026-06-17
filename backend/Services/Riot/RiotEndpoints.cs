@@ -2,7 +2,9 @@ namespace MyLolCoach.Services;
 
 static class RiotEndpoints
 {
-	public const string ApiKey = "?api_key=RGAPI-d839ea54-fbf6-41cd-8222-cfe9f0eec9a9";
+	public const string ApiKey = "?api_key=RGAPI-1f2308f9-2ef6-4b4e-bf08-9de06e2c7642";
+	public const string latest_patch_version = "16.12.1";
+	public const string localization = "en_US";
 	public const string BaseCluster = "https://europe.api.riotgames.com";
 	public const string AccountEndpoint = "/riot/account/v1/accounts/by-riot-id/{0}/{1}";
 	public const string EUWCluster = "https://euw1.api.riotgames.com";
@@ -28,5 +30,9 @@ static class RiotEndpoints
 	public static string BuildCurrentMatchURL(string puuid)
 	{
 		return EUWCluster + string.Format(CurrentMatchEndpoint, puuid) + ApiKey;
+	}
+	public static string BuildChampionDataURL(string champion_name, string current_patch = latest_patch_version, string language = localization)
+	{
+		return DataDragonCluster + string.Format(ChampionDataEndpoint, current_patch, language, champion_name) + ApiKey;
 	}
 }

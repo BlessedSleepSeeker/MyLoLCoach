@@ -38,12 +38,27 @@ public class RiotService : IRiotService
 
 		return current_game_info;
 	}
-	public ActionResult<string> GetLaneOpponent()
+	public async Task<Champion> GetLaneOpponent(string champion_name)
 	{
-		return "";
+		string riot_api_champion_request = RiotEndpoints.BuildChampionDataURL(champion_name);
+		logger.LogInformation($"Calling Riot Api at {riot_api_champion_request}");
+
+		HttpResponseMessage http_response = await client.GetAsync(riot_api_champion_request);
+		string riot_api_response_string = await http_response.Content.ReadAsStringAsync();
+		// Cleaning up the response string to trick the JsonConvert into working
+		string to_remove = $"\"data\":{{\"{champion_name}\":{{";
+		riot_api_response_string = riot_api_response_string.Remove(riot_api_response_string.IndexOf(to_remove), to_remove.Length);
+		riot_api_response_string = riot_api_response_string[..^2];
+		logger.LogInformation(riot_api_response_string);
+
+		Champion champion = JsonConvert.DeserializeObject<Champion>(riot_api_response_string);
+
+		return champion;
 	}
-	public ActionResult<string> GetLaneOpponentCooldown()
+	public ActionResult<List<List<int>>> GetLaneOpponentCooldown(Champion champion)
 	{
-		return "";
+		List<List<int>> cooldown_list = [];
+
+		return cooldown_list;
 	}
 }

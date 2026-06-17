@@ -8,3 +8,8 @@ GET {{backend_HostAddress}}/coach_me
 Accept: application/json
 
 ###
+
+GET {{backend_HostAddress}}/coach_me/Bard
+Accept: application/json
+
+###
